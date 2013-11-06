@@ -32,16 +32,21 @@ main(int argc, char **argv)
     file_size = get_file_size(fp);
 
     lines = malloc(file_size);
+    if(lines == NULL) {
+        fprintf(stderr, "malloc error.\n");
+        goto ENDPROC2;
+    }
 
     if(fread(lines, 1, file_size, fp) != file_size) {
         fprintf(stderr, "file read error(%s).\n", filename);
-        goto ENDPROC;
+        goto ENDPROC1;
     }
 
     fgrep(pattern, lines);
 
-ENDPROC:
+ENDPROC1:
     free(lines);
+ENDPROC2:
     fclose(fp);
 
     return 0;
