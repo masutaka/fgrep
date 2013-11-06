@@ -7,14 +7,14 @@
 
 #define NOWARNING 1
 
-typedef char			i8;
-typedef int			i16;
-typedef long int		i32;
-typedef unsigned char		u8;
-typedef unsigned int		u16;
-typedef unsigned long int	u32;
+typedef char                    i8;
+typedef int                     i16;
+typedef long int                i32;
+typedef unsigned char           u8;
+typedef unsigned int            u16;
+typedef unsigned long int       u32;
 
-typedef unsigned long int	bool;
+typedef unsigned long int       bool;
 
 static size_t get_file_size(FILE *fp);
 static void fgrep(const char *pattern, char *string_buffer);
@@ -34,8 +34,8 @@ main(int argc, char **argv)
     string_buffer = malloc(file_size);
 
     if(fread(string_buffer, 1, file_size, fp) != file_size) {
-	fprintf(stderr, "file read error(%s).\n", filename);
-	goto ENDPROC;
+        fprintf(stderr, "file read error(%s).\n", filename);
+        goto ENDPROC;
     }
 
     fgrep(pattern, string_buffer);
@@ -47,7 +47,7 @@ ENDPROC:
     return 0;
 #ifdef NOWARNING
     (void)argc;
-#endif	/* NOWARNING */
+#endif  /* NOWARNING */
 }
 
 static size_t
@@ -69,17 +69,17 @@ fgrep(const char *pattern, char *string_buffer)
     char *line;
 
     if((line = strtok(string_buffer, "\n")) != '\0') {
-	return;
+        return;
     }
 
     if(strstr(line, pattern) != NULL) {
-	printf("%s\n", line);
+        printf("%s\n", line);
     }
 
     while((line = strtok(NULL, "\n")) != '\0') {
-	if(strstr(line, pattern) != NULL) {
-	    printf("%s\n", line);
-	}
+        if(strstr(line, pattern) != NULL) {
+            printf("%s\n", line);
+        }
     }
 
     return;
