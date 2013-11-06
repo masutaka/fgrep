@@ -29,6 +29,11 @@ main(int argc, char **argv)
     char *lines;
 
     fp = fopen(filename, "r");
+    if(fp == NULL) {
+        fprintf(stderr, "file open error(%s).\n", filename);
+        goto END;
+    }
+
     file_size = get_file_size(fp);
 
     lines = malloc(file_size);
@@ -49,7 +54,9 @@ ENDPROC1:
 ENDPROC2:
     fclose(fp);
 
+END:
     return 0;
+
 #ifdef NOWARNING
     (void)argc;
 #endif  /* NOWARNING */
