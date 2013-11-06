@@ -80,7 +80,7 @@ fgrep(const char *pattern, char *lines)
 {
     char *line;
 
-    if((line = strtok(lines, "\n")) != '\0') {
+    if((line = strtok(lines, "\n")) == '\0') {
         return;
     }
 
