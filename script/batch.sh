@@ -13,8 +13,8 @@ for FGREP in $FGREPS; do
 	/usr/bin/time $FGREP defsubr 100MB.c > /dev/null
 done
 
-echo
-
-echo "- 1GB -"
-
-/usr/bin/time ./c/fgrep defsubr 1GB.c > /dev/null
+# echo
+#
+# echo "- 1GB -"
+#
+# /usr/bin/time ./c/fgrep defsubr 1GB.c > /dev/null
