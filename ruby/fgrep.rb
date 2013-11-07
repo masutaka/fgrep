@@ -1,12 +1,25 @@
 #!/usr/bin/env ruby
 
-pattern = ARGV[0]
-file = ARGV[1]
+def print_with_filename(filename, line)
+  print "#{filename}: #{line}"
+end
 
-open(file) do |f|
-  f.each_line do |line|
-    if line.index pattern
-      print line
+def print_without_filename(filename, line)
+  print line
+end
+
+pattern = ARGV[0]
+ARGV.shift
+filenames = ARGV
+
+print = filenames.count >= 2 ? :print_with_filename : :print_without_filename
+
+filenames.each do |filename|
+  open(filename) do |f|
+    f.each_line do |line|
+      if line.index pattern
+        method(print).call filename, line
+      end
     end
   end
 end
