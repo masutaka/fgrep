@@ -16,14 +16,27 @@ typedef unsigned long int       u32;
 
 typedef unsigned long int       bool;
 
+static void fgrep(const char *pattern, const char *filename);
 static size_t get_file_size(FILE *fp);
-static void fgrep(const char *pattern, char *lines);
+static void fgrep_buffer(const char *pattern, char *lines);
 
 int
 main(int argc, char **argv)
 {
     char *pattern = argv[1];
     char *filename = argv[2];
+
+    fgrep(pattern, filename);
+
+    return 0;
+#ifdef NOWARNING
+    (void)argc;
+#endif  /* NOWARNING */
+}
+
+static void
+fgrep(const char *pattern, const char *filename)
+{
     FILE *fp;
     size_t file_size;
     char *lines;
@@ -47,19 +60,14 @@ main(int argc, char **argv)
         goto ENDPROC1;
     }
 
-    fgrep(pattern, lines);
+    fgrep_buffer(pattern, lines);
 
 ENDPROC1:
     free(lines);
 ENDPROC2:
     fclose(fp);
-
 END:
-    return 0;
-
-#ifdef NOWARNING
-    (void)argc;
-#endif  /* NOWARNING */
+    return;
 }
 
 static size_t
@@ -76,7 +84,7 @@ get_file_size(FILE *fp)
 }
 
 static void
-fgrep(const char *pattern, char *lines)
+fgrep_buffer(const char *pattern, char *lines)
 {
     char *line;
 
