@@ -11,13 +11,6 @@
 /* http://ja.wikipedia.org/wiki/ボイヤー-ムーア文字列検索アルゴリズム */
 #define ENABLE_ALGORITHM_BOYER_MOORE 1
 
-typedef char                    i8;
-typedef int                     i16;
-typedef long int                i32;
-typedef unsigned char           u8;
-typedef unsigned int            u16;
-typedef unsigned long int       u32;
-
 typedef unsigned long int       bool;
 
 typedef void (line_printf_f)(const char *filename, const char *format, ...);
